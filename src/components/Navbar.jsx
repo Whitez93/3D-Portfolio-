@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import { styles } from '../styles';
 import { navLinks } from '../constants';
 import { logo, menu, close } from '../assets';
@@ -20,8 +21,9 @@ const Navbar = () => {
           }}
         >
           <img src={logo} alt="logo" className="w-9 h-9 object-contain" loading="lazy" />
-          <p className="text-white text-[18px] font-bold cursor-pointer">
-            Johann <span className="sm:block hidden">| Web Developer</span>
+          <p className="text-white text-[18px] font-bold cursor-pointer flex">
+            Johann
+            <span className="sm:block hidden">| Web Developer</span>
           </p>
         </Link>
         <ul className="list-none hidden sm:flex flex-row gap-10">
@@ -45,17 +47,20 @@ const Navbar = () => {
           />
 
           <div className={`${!toggle ? 'hidden' : 'flex'} p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}>
-            <ul className="list-none flex justify-end items-start flex-col gap-4">q
-          {navLinks.map((Link) => (
-            <li
-              key={Link.id}
+            <ul className="list-none flex justify-end items-start flex-col gap-4">
+              {navLinks.map((Link) => (
+                <li
+                  key={Link.id}
                   className={`${active === Link.title ? 'text-white' : 'text-secondary'} font-poppins font-medium cursor-pointer text-[16px]`}
-              onClick={() => setActive(Link.title)}
-            >
-              <a href={`#${Link.id}`}>{Link.title}</a>
-            </li>
-          ))}
-        </ul>
+                  onClick={() => {
+                    setToggle(!toggle);
+                    setActive(Link.title);
+                  }}
+                >
+                  <a href={`#${Link.id}`}>{Link.title}</a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
